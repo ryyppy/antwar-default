@@ -16,6 +16,9 @@ Some highlights on the configuration:
 ## How to use
 
 ```
+# Build Reason sources
+npm run bs:build
+
 # Start dev server
 npm start
 
