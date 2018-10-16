@@ -1,0 +1,11 @@
+/*
+ Trick extracted from:
+ https://css-tricks.com/media-queries-sass-3-2-and-codekit/
+*/
+@mixin breakpoint($point) {
+  @if $point == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
