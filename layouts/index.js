@@ -3,8 +3,6 @@ import { hot } from "react-hot-loader";
 
 import Layout from "./layout.re.js";
 
-
-
 import "../styles/style.scss";
 
 const SiteBody = ({ children, location, page: { file } }, ctx) => {
@@ -17,10 +15,9 @@ const SiteBody = ({ children, location, page: { file } }, ctx) => {
   */
 
   const { router } = ctx;
-
+  console.log(file.keywords);
   return (
     <Layout location={location} file={file} router={router}>
-      
       {children}
     </Layout>
   );

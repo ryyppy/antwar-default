@@ -1,14 +1,14 @@
 module.exports = function page(
   filepath,
-  meta = { description: "", title: "", keywords: [] }
+  meta = {}
 ) {
   const name = filepath.split(".")[0];
   const ret = () => {
     const component = require(`../pages/${filepath}`).default;
 
-    component.description = meta.description;
-    component.title = meta.title;
-    component.keywords = meta.keywords;
+    component.description = meta.description || "";
+    component.title = meta.title || "";
+    component.keywords = meta.keywords || [];
 
     return component;
   };

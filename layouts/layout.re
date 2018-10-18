@@ -10,7 +10,7 @@ module Link = ReactRouterDom.Link;
 
 let component = ReasonReact.statelessComponent("Layout");
 
-let title = "Antwar Default";
+let siteName = "Antwar Default";
 
 [@genType]
 type file = {
@@ -28,7 +28,10 @@ let make = (~_location: location, ~file: file, children) => {
   render: _self => {
     let {title, description, keywords} = file;
 
+    Js.log(keywords);
+
     <>
+      <Meta siteName title description keywords />
       <ul>
         <li> <Link to_="/"> {"Home" |> s} </Link> </li>
         <li> <Link to_="/about"> {"About" |> s} </Link> </li>

@@ -14,11 +14,13 @@ export default class Counter extends React.Component {
       count: this.state.count + 1
     });
   }
+
   render() {
     const { count } = this.state;
     return (
       <div>
         Current count: {count}
+        <span onClick={() => this.countUp()}> + </span>
       </div>
     );
   }
