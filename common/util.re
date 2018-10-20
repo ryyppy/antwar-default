@@ -24,12 +24,3 @@ let join = (~sep, arr) =>
     | str => str ++ sep ++ value
     }
   );
-
-let isDEV: unit => bool = [%raw
-  () => "{
-    if(__DEV__) {
-        return true;
-    }
-    return false;
-}"
-];

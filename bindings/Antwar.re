@@ -8,6 +8,15 @@
    It would be better to use process.env.NODE_ENV instead.
  */
 
+let isDEV: unit => bool = [%raw
+  () => "{
+    if(__DEV__) {
+        return true;
+    }
+    return false;
+}"
+];
+
 module Interactive = {
   let component = ReasonReact.statelessComponent("Interactive");
   let stringify: Js.t({.}) => string = [%raw
@@ -41,7 +50,7 @@ module Interactive = {
                 {React.createElement(component, props)}
              </div>
          */
-      if (Util.isDEV()) {
+      if (isDEV()) {
         let mergedProps =
           Js.Obj.(
             empty()
