@@ -21,7 +21,7 @@ function commonConfig() {
     module: {
       rules: [
         {
-          test: /(\.(bs|re)\.)?\.js$/,
+          test: /(\.bs|re\.)?\.js$/,
           use: "babel-loader",
           include: [
             path.join(__dirname, "components"),
@@ -42,10 +42,6 @@ function commonConfig() {
           ]
         },
         {
-          test: /\.ico$/,
-          use: "file-loader"
-        },
-        {
           test: /\.gif$/,
           use: "file-loader"
         },
@@ -59,14 +55,6 @@ function commonConfig() {
         },
         {
           test: /\.svg$/,
-          use: "file-loader"
-        },
-        {
-          test: /\.pdf$/,
-          use: "file-loader"
-        },
-        {
-          test: /\.xml$/,
           use: "file-loader"
         },
         {
@@ -84,7 +72,7 @@ function commonConfig() {
         {
           // Prevent webpack from interpreting Reason files
           test: /.re$/,
-          loader: "./utils/ignore-loader"
+          loader: "./scripts/ignore-loader"
         }
       ]
     },
@@ -95,25 +83,62 @@ function commonConfig() {
         components: path.resolve(__dirname, "components"),
         utils: path.resolve(__dirname, "utils")
       }
-    },
+    }
   };
 }
 
 function interactiveConfig() {
   return {
-    resolve: {
-      alias: {
-        react: "preact-compat/dist/preact-compat.min.js",
-        "react-dom": "preact-compat/dist/preact-compat.min.js",
-      },
+    module: {
+      rules: [
+        {
+          test: /\.s?css$/,
+          // TODO: Refactor this extra scss loader config, after migrating to CSS-Modules only
+          include: [path.resolve(__dirname, "styles")],
+          use: ExtractTextPlugin.extract({
+            use: ["css-loader", "postcss-loader", "sass-loader"],
+            fallback: "style-loader"
+          })
+        },
+        {
+          test: /\.s?css$/,
+          exclude: [path.resolve(__dirname, "styles")],
+          use: ExtractTextPlugin.extract({
+            use: [
+              {
+                loader: "css-loader",
+                options: {
+                  importLoaders: 2,
+                  modules: true,
+                  localIdentName: "[name]__[local]___[hash:base64:5]"
+                }
+              },
+              "postcss-loader",
+              "sass-loader"
+            ],
+            fallback: "style-loader"
+          })
+        }
+      ]
     },
+    /* This doesn't work with ReasonReact yet. Seems like there is some leaky shim logic involved */
+    // resolve: {
+    //   alias: {
+    //     react: "preact-compat/dist/preact-compat.min.js",
+    //     "react-dom": "preact-compat/dist/preact-compat.min.js"
+    //   }
+    // },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
-          warnings: false,
-        },
+          warnings: false
+        }
       }),
-    ],
+      new ExtractTextPlugin({
+        filename: "[name].[chunkhash].css",
+        allChunks: true
+      })
+    ]
   };
 }
 

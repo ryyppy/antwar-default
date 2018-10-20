@@ -15,7 +15,6 @@ const SiteBody = ({ children, location, page: { file } }, ctx) => {
   */
 
   const { router } = ctx;
-  console.log(file.keywords);
   return (
     <Layout location={location} file={file} router={router}>
       {children}

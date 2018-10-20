@@ -28,8 +28,6 @@ let make = (~_location: location, ~file: file, children) => {
   render: _self => {
     let {title, description, keywords} = file;
 
-    Js.log(keywords);
-
     <>
       <Meta siteName title description keywords />
       <ul>

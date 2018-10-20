@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./Counter.scss";
 
 export default class Counter extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class Counter extends React.Component {
   render() {
     const { count } = this.state;
     return (
-      <div>
+      <div className={style.root}>
         Current count: {count}
         <span onClick={() => this.countUp()}> + </span>
       </div>
