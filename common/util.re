@@ -24,3 +24,5 @@ let join = (~sep, arr) =>
     | str => str ++ sep ++ value
     }
   );
+
+let classnames = (c1: string, c2: string) => join(~sep=" ", [|c1, c2|]);
