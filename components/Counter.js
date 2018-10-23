@@ -4,15 +4,22 @@ import style from "./Counter.scss";
 export default class Counter extends React.Component {
   constructor(props) {
     super(props);
-    this.countUp = this.countUp.bind(this);
+    this.inc = this.inc.bind(this);
+    this.dec = this.dec.bind(this);
     this.state = {
       count: props.count
     };
   }
 
-  countUp() {
+  inc() {
     this.setState({
       count: this.state.count + 1
+    });
+  }
+
+  dec() {
+    this.setState({
+      count: this.state.count - 1
     });
   }
 
@@ -20,8 +27,9 @@ export default class Counter extends React.Component {
     const { count } = this.state;
     return (
       <div className={style.root}>
+      <button onClick={() => this.dec()}> - </button>
         Current count: {count}
-        <span onClick={() => this.countUp()}> + </span>
+        <button onClick={() => this.inc()}> + </button>
       </div>
     );
   }
