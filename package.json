@@ -8,11 +8,10 @@
     "clean-build": "npm run clean && npm run bs:build && npm run build",
     "clean": "rm -rf build/",
     "debug": "npm run clean && node --inspect-brk ./antwar.bootstrap.js build",
-    "bs:build": "export BS_CMT_POST_PROCESS_CMD=\"$PWD/node_modules/.bin/gentype.native\" && bsb -make-world",
-    "bs:watch": "export BS_CMT_POST_PROCESS_CMD=\"$PWD/node_modules/.bin/gentype.native\" && bsb -make-world -w",
+    "bs:build": "export BS_CMT_POST_PROCESS_CMD=\"gentype\" && bsb -make-world",
+    "bs:watch": "export BS_CMT_POST_PROCESS_CMD=\"gentype\" && bsb -make-world -w",
     "bs:clean": "bsb -clean-world",
-    "bootstrap": "export BS_CMT_POST_PROCESS_CMD=\"$PWD/node_modules/.bin/gentype.native\" && bash scripts/setup_gentype.sh && npm run bs:build",
-    "netlify": "npm run bootstrap && npm run build"
+    "netlify": "npm run bs:build && npm run build"
   },
   "dependencies": {
     "antwar": "^0.26.0",
@@ -42,6 +41,7 @@
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
+    "gentype": "^0.27.0-beta5",
     "loader-utils": "^1.1.0",
     "node-sass": "^4.9.3",
     "postcss-import": "^12.0.0",
