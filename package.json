@@ -8,8 +8,8 @@
     "clean-build": "npm run clean && npm run bs:build && npm run build",
     "clean": "rm -rf build/",
     "debug": "npm run clean && node --inspect-brk ./antwar.bootstrap.js build",
-    "bs:build": "export BS_CMT_POST_PROCESS_CMD=\"gentype\" && bsb -make-world",
-    "bs:watch": "export BS_CMT_POST_PROCESS_CMD=\"gentype\" && bsb -make-world -w",
+    "bs:build": "node scripts/gentype-bsb -make-world",
+    "bs:watch": "node scripts/gentype-bsb -make-world -w",
     "bs:clean": "bsb -clean-world",
     "netlify": "npm run bs:build && npm run build"
   },
