@@ -22,7 +22,7 @@
     "react-helmet": "^5.2.0",
     "react-helmet-async": "0.1.0-alpha",
     "react-router-dom": "^4.3.1",
-    "reason-react": "^0.5.3"
+    "reason-react": "github:reasonml/reason-react#6d2d965"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
