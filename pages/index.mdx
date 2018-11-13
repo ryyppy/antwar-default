@@ -1,6 +1,6 @@
 import Counter from "../components/Counter";
 import Interactive from "antwar-interactive";
-import ReCounter from "../components/ReCounter.re.js";
+import ReCounter from "../components/ReCounter.gen.js";
 
 # Startpage
 
@@ -20,7 +20,7 @@ given components, build separate bundles and hooks them up via script injection.
 <Interactive id="components/Counter.js" component={Counter} count={5} />
 
 **This is a Reason based Counter:**
-<Interactive id="components/ReCounter.re.js" component={ReCounter} count={5} />
+<Interactive id="components/ReCounter.gen.js" component={ReCounter} count={5} />
 
 ## Smoke Testing Production builds
 
