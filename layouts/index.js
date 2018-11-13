@@ -3,8 +3,6 @@ import { hot } from "react-hot-loader";
 
 import Layout from "./layout.re.js";
 
-import "../styles/style.scss";
-
 const SiteBody = ({ children, location, page: { file } }, ctx) => {
   /*
   ReasonReact doesn't support the stateless function 

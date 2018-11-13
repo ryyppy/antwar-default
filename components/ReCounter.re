@@ -1,5 +1,3 @@
-[@bs.module] external style: Js.t({..}) = "./Counter.scss";
-
 open Util;
 
 type state = int;
@@ -21,7 +19,8 @@ let make = (~count: int, _children) => {
     },
   render: self => {
     let text = "Current count: " ++ string_of_int(self.state);
-    <div className=style##root>
+    let className = self.state == 0 ? "red" : "";
+    <div className>
       <button onClick={_evt => self.send(Dec)}> {"-" |> s} </button>
       {text |> s}
       <button onClick={_evt => self.send(Inc)}> {"+" |> s} </button>

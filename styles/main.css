@@ -1,0 +1,6 @@
+/* This is consuming tachyons in a modifyable way.
+   Based on this blog post:
+   https://medium.com/@chantlong/what-i-learned-using-tachyons-19c6d15cec5e */
+
+@import 'tachyons';
+@import './tachyons-custom.css';

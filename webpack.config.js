@@ -92,36 +92,15 @@ function interactiveConfig() {
     module: {
       rules: [
         {
-          test: /\.s?css$/,
-          // TODO: Refactor this extra scss loader config, after migrating to CSS-Modules only
+          test: /\.css$/,
           include: [path.resolve(__dirname, "styles")],
           use: ExtractTextPlugin.extract({
-            use: ["css-loader", "postcss-loader", "sass-loader"],
-            fallback: "style-loader"
-          })
-        },
-        {
-          test: /\.s?css$/,
-          exclude: [path.resolve(__dirname, "styles")],
-          use: ExtractTextPlugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  importLoaders: 2,
-                  modules: true,
-                  localIdentName: "[name]__[local]___[hash:base64:5]"
-                }
-              },
-              "postcss-loader",
-              "sass-loader"
-            ],
+            use: ["css-loader", "postcss-loader"],
             fallback: "style-loader"
           })
         }
       ]
     },
-    /* This doesn't work with ReasonReact yet. Seems like there is some leaky shim logic involved */
     // resolve: {
     //   alias: {
     //     react: "preact-compat/dist/preact-compat.min.js",
@@ -147,27 +126,9 @@ function developmentConfig() {
     module: {
       rules: [
         {
-          test: /\.s?css$/,
-          // TODO: Refactor this extra scss loader config, after migrating to CSS-Modules only
+          test: /\.css$/,
           include: [path.resolve(__dirname, "styles")],
-          use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
-        },
-        {
-          test: /\.s?css$/,
-          exclude: [path.resolve(__dirname, "styles")],
-          use: [
-            "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                importLoaders: 2,
-                modules: true,
-                localIdentName: "[name]__[local]___[hash:base64:5]"
-              }
-            },
-            "postcss-loader",
-            "sass-loader"
-          ]
+          use: ["style-loader", "css-loader", "postcss-loader"]
         }
       ]
     }
@@ -180,29 +141,9 @@ function buildConfig() {
       rules: [
         {
           test: /\.s?css$/,
-          // TODO: Refactor this extra scss loader config, after migrating to CSS-Modules only
           include: [path.resolve(__dirname, "styles")],
           use: ExtractTextPlugin.extract({
-            use: ["css-loader", "postcss-loader", "sass-loader"],
-            fallback: "style-loader"
-          })
-        },
-        {
-          test: /\.s?css$/,
-          exclude: [path.resolve(__dirname, "styles")],
-          use: ExtractTextPlugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  importLoaders: 2,
-                  modules: true,
-                  localIdentName: "[name]__[local]___[hash:base64:5]"
-                }
-              },
-              "postcss-loader",
-              "sass-loader"
-            ],
+            use: ["css-loader", "postcss-loader"],
             fallback: "style-loader"
           })
         }
