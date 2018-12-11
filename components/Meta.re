@@ -35,7 +35,7 @@ let make =
   ...component,
   render: _self =>
     <Helmet>
-      <link rel="canonical" href="https://diemagischezehn.at/" />
+      <link rel="canonical" href="https://github.com/ryyppy/antwar-default" />
       <title> {s(siteName ++ " - " ++ title)} </title>
       <meta charSet="UTF-8" />
       <meta

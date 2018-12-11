@@ -97,3 +97,23 @@ module Interactive = {
     },
   };
 };
+
+
+open Routing;
+
+/* Path mapping for antwar.config.js */
+let makeAntwarPaths = (): Js.Dict.t(Js.t({.})) => {
+  let paths = Js.Dict.empty();
+
+  List.iter(
+    mapping => {
+      let (route, file, meta) = mapping;
+      let path = routeToPath(route);
+
+      Js.Dict.set(paths, path, page(file, meta));
+    },
+    Routing.routeFileMappings,
+  );
+
+  paths;
+};

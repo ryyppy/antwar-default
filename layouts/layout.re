@@ -1,7 +1,5 @@
 %raw
-"require('../styles/style.scss')";
-
-[@bs.module] external style: Js.t({..}) = "./layout.scss";
+"require('../styles/main.css')";
 
 open Util;
 
@@ -28,13 +26,13 @@ let make = (~_location: location, ~file: file, children) => {
   render: _self => {
     let {title, description, keywords} = file;
 
-    <>
+    <main className="w-1/2 font-overpass">
       <Meta siteName title description keywords />
       <ul>
         <li> <Link to_="/"> {"Home" |> s} </Link> </li>
         <li> <Link to_="/about"> {"About" |> s} </Link> </li>
       </ul>
       children
-    </>;
+    </main>;
   },
 };
