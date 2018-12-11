@@ -3,6 +3,16 @@ const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const merge = require("webpack-merge");
 
+// Custom PurgeCSS extractor for Tailwind that allows special characters in
+// class names.
+//
+// https://github.com/FullHuman/purgecss#extractor
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+  }
+}
+
 module.exports = env => {
   switch (env) {
     case "build":
@@ -79,7 +89,7 @@ function commonConfig() {
     resolve: {
       alias: {
         assets: path.resolve(__dirname, "assets"),
-        config: path.resolve(__dirname, "antwar.config.js"), // XXX: styleguidist
+        config: path.resolve(__dirname, "antwar.config.js"),
         components: path.resolve(__dirname, "components"),
         utils: path.resolve(__dirname, "utils")
       }
@@ -99,7 +109,7 @@ function interactiveConfig() {
             fallback: "style-loader"
           })
         }
-      ]
+      ],
     },
     // resolve: {
     //   alias: {
@@ -108,11 +118,6 @@ function interactiveConfig() {
     //   }
     // },
     plugins: [
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        }
-      }),
       new ExtractTextPlugin({
         filename: "[name].[chunkhash].css",
         allChunks: true
@@ -140,7 +145,7 @@ function buildConfig() {
     module: {
       rules: [
         {
-          test: /\.s?css$/,
+          test: /\.css$/,
           include: [path.resolve(__dirname, "styles")],
           use: ExtractTextPlugin.extract({
             use: ["css-loader", "postcss-loader"],
@@ -154,9 +159,9 @@ function buildConfig() {
         filename: "[name].[chunkhash].css",
         allChunks: true
       }),
-      new webpack.DefinePlugin({
-        window: `false`
-      })
+      //new webpack.DefinePlugin({
+        //window: `false`
+      //})
     ]
   };
 }

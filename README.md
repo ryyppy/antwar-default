@@ -3,8 +3,8 @@
 This is an opinionated antwar boilerplate.
 
 Some highlights on the configuration:
-- Manual route mapping (no directory / filename magic)
-- Tachyons
+- Manual route mapping w/ Reason (no directory / filename magic)
+- Tailwind
 - PostCSS
 - Reason & ReasonReact
 - MDX
