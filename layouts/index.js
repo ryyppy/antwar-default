@@ -1,7 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 
-import Layout from "./layout.re.js";
+import Layout from "./layout.gen.js";
 
 const SiteBody = ({ children, location, page: { file } }, ctx) => {
   /*
